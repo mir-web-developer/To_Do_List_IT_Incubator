@@ -2,6 +2,8 @@ import React, {ChangeEvent} from 'react';
 import {FilterValuesType} from './App';
 import { AddItemForm } from './AddItemFormTypes';
 import { EditableSpan } from './EditableSpan';
+import {IconButton, Button} from "@material-ui/core"
+import {Delete} from "@material-ui/icons"
 
 export type TaskType = {
     id: string
@@ -58,21 +60,24 @@ props.addTask(title, props.id)
                         <input type="checkbox" onChange={onChangeHandler} checked={t.isDone}/>
                         <span>{t.title}</span>
                             <EditableSpan title={t.title} onChange={onChangeTitleHandler}  />
-                        <button onClick={onClickHandler}>x</button>
+                        
+                        <IconButton onClick={onClickHandler} aria-label="delete">
+                            <Delete />
+                            </IconButton>
                     </li>
                 })
             }
         </ul>
         <div>
-            <button className={props.filter === 'all' ? "active-filter" : ""}
+            <Button className={props.filter === 'all' ? "active-filter" : ""}
                     onClick={onAllClickHandler}>All
-            </button>
-            <button className={props.filter === 'active' ? "active-filter" : ""}
+            </Button>
+            <Button className={props.filter === 'active' ? "active-filter" : ""}
                     onClick={onActiveClickHandler}>Active
-            </button>
-            <button className={props.filter === 'completed' ? "active-filter" : ""}
+            </Button>
+            <Button className={props.filter === 'completed' ? "active-filter" : ""}
                     onClick={onCompletedClickHandler}>Completed
-            </button>
+            </Button>
         </div>
     </div>
 }
